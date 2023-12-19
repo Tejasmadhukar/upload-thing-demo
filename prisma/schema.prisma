@@ -49,6 +49,14 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    uploadedImages UploadedImage[]
+}
+
+model UploadedImage {
+  image_id String @id @default(cuid())
+  image_url String
+  userId    String
+  user User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
